@@ -11,11 +11,10 @@ $tvshows = TvShowCollection::findAll();
 
 $webpage->appendContent("<div class='list'>\n");
 foreach ($tvshows as $tvshow) {
-    $posterId = $tvshow->getPosterId();
     $webpage->appendContent("            <div class='show'>\n");
     $webpage->appendContent(<<<HTML
                                             <div class='poster'>
-                                                <img src='poster.php?posterId=$posterId' alt='Affiche de la série'>
+                                                <img src='poster.php?posterId={$tvshow->getPosterId()}' alt='Affiche de la série'>
                                             </div>\n
                             HTML);
     $webpage->appendContent(<<<HTML
