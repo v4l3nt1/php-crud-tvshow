@@ -59,7 +59,9 @@ class AppWebPage extends WebPage
             <title>$title</title>
         </head>
         <body>
-            <div class="header"><h1>$title</h1></div>
+            <div class="header">
+                <h1>$title</h1>
+            </div>\n
         HTML;
 
         if ($menu != []) {
@@ -71,8 +73,12 @@ class AppWebPage extends WebPage
         }
 
         $html .= <<<HTML
-            <div class="content">$body</div>
-            <div class="footer">Dernière modificaton : $lastMod</div>
+            <div class="content">
+                $body
+            </div>
+            <div class="footer">
+                <p>Dernière modificaton : $lastMod</p>
+            </div>
         </body>        
         </html>
         HTML;
