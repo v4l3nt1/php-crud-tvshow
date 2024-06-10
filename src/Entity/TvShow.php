@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Entity;
+namespace Entity;
 
 use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
