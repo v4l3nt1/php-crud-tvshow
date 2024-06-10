@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace src\Entity;
 
+use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
+
 class TvShow
 {
     private int $id;
@@ -59,5 +62,23 @@ class TvShow
     public function getPosterId(): string
     {
         return $this->posterId;
+    }
+
+    public static function findById(int $id): TvShow
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT id, name, originaName, homepage, overview, posterId
+            FROM tvshow
+            WHERE id = :id
+        SQL
+        );
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        if (!($show = $stmt->fetchObject(TvShow::class))) {
+            throw new EntityNotFoundException();
+        } else {
+            return $show;
+        }
     }
 }
