@@ -24,7 +24,7 @@ foreach ($tvshows as $tvshow) {
                                                 <p class='overview'>{$webpage->escapeString($tvshow->getOverview())}</p>
                                             </div>\n
                             HTML);
-    $webpage->appendContent("            </div>\n");
+    $webpage->appendContent("            </div>\n\n");
 }
 
 
