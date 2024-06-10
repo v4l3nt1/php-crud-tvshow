@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Collection\SeasonCollection;
 use Entity\Exception\EntityNotFoundException;
 
 class TvShow
@@ -64,6 +65,18 @@ class TvShow
         return $this->posterId;
     }
 
+    /** Renvoie une liste de saison correspondant à la série courante
+     * @return Season[]
+     */
+    public function getSeasons(): array
+    {
+        return SeasonCollection::findByTvShowId($this->getId());
+    }
+
+    /** permet de recuperer une saison à partir d'un id
+     * @param int $id
+     * @return TvShow
+     */
     public static function findById(int $id): TvShow
     {
         $stmt = MyPDO::getInstance()->prepare(
