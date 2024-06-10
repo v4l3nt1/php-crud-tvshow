@@ -3,19 +3,22 @@
 declare(strict_types=1);
 
 namespace Entity;
+
 use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
 
-class Poster{
-
+class Poster
+{
     private int $id;
     private string $jpeg;
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getJpeg(){
+    public function getJpeg()
+    {
         return $this->jpeg;
     }
 
