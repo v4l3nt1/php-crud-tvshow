@@ -10,12 +10,12 @@ use Entity\Exception\EntityNotFoundException;
 
 class TvShow
 {
-    private int $id;
+    private ?int $id;
     private string $name;
     private string $originalName;
     private string $homepage;
     private string $overview;
-    private string $posterId;
+    private ?int $posterId;
 
     /**
      * sert à créer l'instance pour la fonction create
@@ -25,9 +25,9 @@ class TvShow
     }
 
     /** Getter de id
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -65,15 +65,16 @@ class TvShow
     }
 
     /** Getter de posterId
-     * @return string
+     * @return ?int
      */
-    public function getPosterId(): string
+    public function getPosterId(): ?int
     {
         return $this->posterId;
     }
 
     /** modifie l'id
-     * @param int $id
+     * @param ?int $id
+     * @return TvShow
      */
     public function setId(?int $id): TvShow
     {
@@ -82,10 +83,10 @@ class TvShow
     }
 
     /** modifie le nom
-     * @param $name
+     * @param string $name
      * @return TvShow
      */
-    private function setName($name): TvShow
+    private function setName(string $name): TvShow
     {
         $this->name = $name;
         return $this;
@@ -165,7 +166,6 @@ SQL
         $stmt->bindValue(':id', $this->getId());
         $stmt->execute();
         return $this->setId(null);
-
     }
 
     /** met a jour dans la base de données la série à partir du nom de l'id de l'instance
