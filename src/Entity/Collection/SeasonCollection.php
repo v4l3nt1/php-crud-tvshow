@@ -25,7 +25,7 @@ class SeasonCollection
             SQL
         );
 
-        $stmt->bindValue('tvShowId', $tvShowId);
+        $stmt->bindValue(':tvShowId', $tvShowId);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, Season::class);
 
