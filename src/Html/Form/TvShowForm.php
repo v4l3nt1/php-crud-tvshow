@@ -63,4 +63,38 @@ class TvShowForm
         HTML;
         return $html;
     }
+
+    /**
+     * @throws ParameterException
+     */
+    public function setEntityFromQueryString(): void
+    {
+        if (!isset($_POST["id"]) || !ctype_digit($_POST["id"])) {
+            $id = null;
+        } else {
+            $id = (int) $_POST["id"];
+        }
+        if (!isset($_POST["name"]) || $_POST["name"] == '') {
+            throw new ParameterException();
+        } else {
+            $name = $this->stripTagsAndTrim($_POST["name"]);
+        }
+        if (!isset($_POST["ogName"]) || $_POST["ogName"] == '') {
+            throw new ParameterException();
+        } else {
+            $ogName = $this->stripTagsAndTrim($_POST["ogName"]);
+        }
+        if (!isset($_POST["homepage"]) || $_POST["homepage"] == '') {
+            throw new ParameterException();
+        } else {
+            $homepage = $this->stripTagsAndTrim($_POST["homepage"]);
+        }
+        if (!isset($_POST["overview"]) || $_POST["overview"] == '') {
+            throw new ParameterException();
+        } else {
+            $overview = $this->stripTagsAndTrim($_POST["overview"]);
+        }
+        $this->tvShow = TvShow::create($id, $name, $ogName, $homepage, $overview);
+    }
+
 }
