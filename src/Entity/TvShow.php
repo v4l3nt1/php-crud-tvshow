@@ -195,4 +195,17 @@ SQL
 
         return $this;
     }
+
+    /** sauvegarde la série dans la base de données
+     * @return $this
+     */
+    public function save()
+    {
+        if ($this->getId() == null) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+        return $this;
+    }
 }
