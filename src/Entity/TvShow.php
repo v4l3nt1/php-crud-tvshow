@@ -154,4 +154,21 @@ SQL
 
         return $tvShow;
     }
+
+    /**
+     * sert à créer l'instance pour la fonction create
+     */
+    private function __construct()
+    {
+    }
+
+    /** modifie le nom
+     * @param $name
+     * @return TvShow
+     */
+    private function setName($name): TvShow
+    {
+        $this->name = $name;
+        return $this;
+    }
 }
