@@ -202,4 +202,17 @@ class Season
 
         return $this;
     }
+
+    /** sauvegarde la saison dans la base de données
+     * @return $this
+     */
+    public function save()
+    {
+        if ($this->getId() == null) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+        return $this;
+    }
 }
