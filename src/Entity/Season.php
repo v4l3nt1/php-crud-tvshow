@@ -140,4 +140,22 @@ class Season
         }
     }
 
+    /** Créé une saison
+     * @param ?int $id
+     * @param int $tvShowId
+     * @param string $name
+     * @param int $seasonNumber
+     * @param ?int $posterId
+     * @return Season
+     */
+    public static function create(int $id = null, int $tvShowId, string $name, int $seasonNumber, ?int $posterId = null): Season
+    {
+        $season = new Season();
+        $season->setId($id);
+        $season->setTvShowId($tvShowId);
+        $season->setName($name);
+        $season->setSeasonNumber($seasonNumber);
+        $season->setPosterId($posterId);
+        return $season;
+    }
 }
