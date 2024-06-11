@@ -21,8 +21,9 @@ $season = Season::findById((int)$_GET["seasonId"]);
 $tvShow = TvShow::findById($season->getTvShowId());
 $episodes = $season->getEpisodes();
 
-$webpage->setTitle($tvShow->getName()." : ".$season->getName()
-);
+$webpage->setTitle($tvShow->getName()." : ".$season->getName());
+$webpage->appendToMenu("./admin/season-form.php?seasonId={$season->getId()}", 'Modifier la Saison');
+$webpage->appendToMenu("./admin/season-delete.php?seasonId={$season->getId()}", 'Supprimer la Saison');
 
 if ($season->getPosterId() == null)
 {

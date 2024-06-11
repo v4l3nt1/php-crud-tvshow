@@ -10,16 +10,20 @@ use Entity\Exception\EntityNotFoundException;
 
 class Season
 {
-    private int $id;
+    private ?int $id;
     private int $tvShowId;
     private string $name;
     private int $seasonNumber;
     private ?int $posterId;
 
+    private function __construct()
+    {
+    }
+
     /** renvoie l'id de la saison
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -48,12 +52,62 @@ class Season
         return $this->seasonNumber;
     }
 
-    /** renvoie l'id du poster
-     * @return null|int
+    /** renvoie l'id du poster de la saison
+     * @return ?int
      */
     public function getPosterId(): ?int
     {
         return $this->posterId;
+    }
+
+    /** modifie l'id de la saison
+     * @param ?int $id
+     * @return Season
+     */
+    public function setId(?int $id): Season
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /** modifie l'id de la série
+     * @param int $tvShowId
+     * @return Season
+     */
+    public function setTvShowId(int $tvShowId): Season
+    {
+        $this->tvShowId = $tvShowId;
+        return $this;
+    }
+
+    /** modifie le nom de la saison
+     * @param string $name
+     * @return Season
+     */
+    public function setName(string $name): Season
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /** modifie le numéro de la saison
+     * @param int $seasonNumber
+     * @return Season
+     */
+    public function setSeasonNumber(int $seasonNumber): Season
+    {
+        $this->seasonNumber = $seasonNumber;
+        return $this;
+    }
+
+    /** modifie l'id du poster de la saison
+     * @param ?int $posterId
+     * @return Season
+     */
+    public function setPosterId(?int $posterId): Season
+    {
+        $this->posterId = $posterId;
+        return $this;
     }
 
     /** Renvoie une liste d'épisodes correspondant à la saison courante
@@ -86,4 +140,95 @@ class Season
         }
     }
 
+    /** Créé une saison
+     * @param ?int $id
+     * @param int $tvShowId
+     * @param string $name
+     * @param int $seasonNumber
+     * @param ?int $posterId
+     * @return Season
+     */
+    public static function create(int $id = null, int $tvShowId, string $name, int $seasonNumber, ?int $posterId = null): Season
+    {
+        $season = new Season();
+        $season->setId($id);
+        $season->setTvShowId($tvShowId);
+        $season->setName($name);
+        $season->setSeasonNumber($seasonNumber);
+        $season->setPosterId($posterId);
+        return $season;
+    }
+
+    /** met a jour dans la base de données la saison à partir de l'id de l'instance
+     * @return Season
+     */
+    public function update(): Season
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            UPDATE season
+            SET name=:name, seasonNumber=:seasonNumber
+            WHERE id=:id
+        SQL);
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':seasonNumber', $this->getSeasonNumber());
+
+        $stmt->execute();
+
+        return $this;
+    }
+
+    /** ajouter à la base de données (table season)
+     * @return $this
+     */
+    private function insert()
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            INSERT INTO season (id,tvShowId,name,seasonNumber,posterId)
+            VALUES (:id,:tvShowId,:name,:seasonNumber,:posterId)
+        SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':tvShowId', $this->getTvShowId());
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':seasonNumber', $this->getSeasonNumber());
+        $stmt->bindValue(':posterId', $this->getPosterId());
+
+        $stmt->execute();
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        return $this;
+    }
+
+    /** sauvegarde la saison dans la base de données
+     * @return $this
+     */
+    public function save()
+    {
+        if ($this->getId() == null) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+        return $this;
+    }
+
+    /** supprimer une saison de la base de données et met son id a null
+     * @return $this
+     */
+    public function delete(): Season
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            DELETE FROM season
+            WHERE id=:id
+            SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->execute();
+        return $this->setId(null);
+    }
 }
