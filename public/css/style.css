@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.header, .content, .footer, .show, .season {
+.header, .content, .footer, .show, .season, .episode {
     border: 2px solid black;
     padding: 5px;
     margin: 5px;
@@ -76,4 +76,21 @@ body {
     justify-content: space-evenly;
 }
 
+.season{
+    border: none;
+}
+
+.tvShow>a{
+    text-decoration: none;
+    color:black;
+}
+
+.episode{
+    display: flex;
+    flex-direction: column;
+}
+
+.episode p{
+    flex-shrink: 1;
+}
 

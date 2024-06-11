@@ -29,12 +29,14 @@ $webpage->appendContent(<<<HTML
                                 <div class="seasonPoster">
                                     <img src='poster.php?posterId={$season->getPosterId()}' alt='Affiche de la saison'>
                                 </div>
-                                <div class="name tvShow">
-                                    {$tvShow->getName()}
-                                </div>
-                                <div class="name season">
-                                    {$season->getName()}
-                                </div>
+                                <div class="info">
+                                    <div class="name tvShow">
+                                        <a href="tvshow.php?tvShowId={$tvShow->getId()}">{$tvShow->getName()}</a>
+                                    </div>
+                                    <div class="name season">
+                                        {$season->getName()}
+                                    </div>
+                                 </div>
                             </div>
                             <div class="list">
                                                            
@@ -45,8 +47,7 @@ foreach ($episodes as $episode) {
     $webpage->appendContent(<<<HTML
 
                                 <div class="episode">
-                                    <p>{$episode->getEpisodeNumber()}</p>
-                                    <p>{$episode->getName()}</p>
+                                    <p>Episode {$episode->getEpisodeNumber()} : {$episode->getName()}</p>
                                     <p>{$episode->getOverview()}</p>
                                 </div>
 
