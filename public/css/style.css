@@ -13,8 +13,14 @@ body {
     margin: 0;
 }
 
-.header, .content, .footer, .show {
+.header, .content, .footer, .show, .season {
     border: 2px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.main {
+    border: 4px solid red;
     padding: 5px;
     margin: 5px;
 }
@@ -31,13 +37,16 @@ body {
     display: flex;
     flex-direction: column;
 }
-.show {
+.show, .season {
     display: flex;
+    text-decoration: none;
+    color: black;
 }
 
 .info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 .show:nth-child(even) {
     flex-direction: row-reverse;
@@ -45,6 +54,26 @@ body {
 
 .poster {
     grid-row: span 2;
+}
+
+.season, .main {
+    display : flex;
+}
+
+.seasonName {
+    flex-grow : 1;
+}
+
+.main .name, .ogName {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-evenly;
 }
 
 

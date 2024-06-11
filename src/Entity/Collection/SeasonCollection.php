@@ -14,14 +14,14 @@ class SeasonCollection
      * @param $tvShowId
      * @return Season[]
      */
-    public static function findByTvShowId($tvShowId) : array
+    public static function findByTvShowId($tvShowId): array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
             SELECT id, tvShowId, name, seasonNumber, posterId
             FROM season
             WHERE tvShowId = :tvShowId
-            ORDER name, seasonNumber
+            ORDER BY seasonNumber
             SQL
         );
 
