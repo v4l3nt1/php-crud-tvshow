@@ -17,6 +17,13 @@ class TvShow
     private string $overview;
     private string $posterId;
 
+    /**
+     * sert à créer l'instance pour la fonction create
+     */
+    private function __construct()
+    {
+    }
+
     /** Getter de id
      * @return int
      */
@@ -65,6 +72,55 @@ class TvShow
         return $this->posterId;
     }
 
+    /** modifie l'id
+     * @param int $id
+     */
+    public function setId(?int $id): TvShow
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /** modifie le nom
+     * @param $name
+     * @return TvShow
+     */
+    private function setName($name): TvShow
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /** modifie le nom original de la série
+     * @param string $originalName
+     * @return TvShow
+     */
+    public function setOriginalName(string $originalName): TvShow
+    {
+        $this->originalName = $originalName;
+        return $this;
+    }
+
+    /** modifie le site de la série
+     * @param string $homepage
+     * @return TvShow
+     */
+    public function setHomepage(string $homepage): TvShow
+    {
+        $this->homepage = $homepage;
+        return $this;
+    }
+
+    /** modifie la description)
+     * @param string $overview
+     * @return TvShow
+     */
+    public function setOverview(string $overview): TvShow
+    {
+        $this->overview = $overview;
+        return $this;
+    }
+
     /** Renvoie une liste de saison correspondant à la série courante
      * @return Season[]
      */
@@ -93,15 +149,6 @@ class TvShow
         } else {
             return $show;
         }
-    }
-
-    /** modifie l'id
-     * @param int $id
-     */
-    public function setId(?int $id): TvShow
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /** supprimer une serie de la base de données et met son id a null
@@ -157,23 +204,6 @@ SQL
         return $tvShow;
     }
 
-    /**
-     * sert à créer l'instance pour la fonction create
-     */
-    private function __construct()
-    {
-    }
-
-    /** modifie le nom
-     * @param $name
-     * @return TvShow
-     */
-    private function setName($name): TvShow
-    {
-        $this->name = $name;
-        return $this;
-    }
-
     /** ajouter à la base de données
      * @return $this
      */
@@ -211,33 +241,4 @@ SQL
         return $this;
     }
 
-    /** modifie le nom original de la série
-     * @param string $originalName
-     * @return TvShow
-     */
-    public function setOriginalName(string $originalName): TvShow
-    {
-        $this->originalName = $originalName;
-        return $this;
-    }
-
-    /** modifie le site de la série
-     * @param string $homepage
-     * @return TvShow
-     */
-    public function setHomepage(string $homepage): TvShow
-    {
-        $this->homepage = $homepage;
-        return $this;
-    }
-
-    /** modifie la description)
-     * @param string $overview
-     * @return TvShow
-     */
-    public function setOverview(string $overview): TvShow
-    {
-        $this->overview = $overview;
-        return $this;
-    }
 }
