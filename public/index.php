@@ -12,10 +12,16 @@ $tvshows = TvShowCollection::findAll();
 
 $webpage->appendContent("<div class='list'>\n");
 foreach ($tvshows as $tvshow) {
+    if ($tvshow->getPosterId() == null)
+    {
+        $jpeg = 'img/default.png';
+    }else{
+        $jpeg = "poster.php?posterId={$tvshow->getPosterId()}";
+    }
     $webpage->appendContent("            <a class='show' href='tvshow.php?tvShowId={$tvshow->getId()}'>\n");
     $webpage->appendContent(<<<HTML
                                             <div class='poster'>
-                                                <img src='poster.php?posterId={$tvshow->getPosterId()}' alt='Affiche de la série'>
+                                                <img src='$jpeg' alt='Affiche de la série'>
                                             </div>\n
                             HTML);
     $webpage->appendContent(<<<HTML
