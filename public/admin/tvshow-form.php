@@ -17,7 +17,7 @@ try {
         throw new ParameterException();
     } else {
         $tvShow = TvShow::findById((int)$_GET["tvShowId"]);
-        $webpage->setTitle("Modification de série");
+        $webpage->setTitle("Modification de série : {$tvShow->getName()}");
     }
     $tvShowForm = new TvShowForm($tvShow);
     $webpage->appendContent($tvShowForm->getHtmlForm('tvshow-save.php'));
