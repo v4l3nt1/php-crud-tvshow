@@ -208,4 +208,34 @@ SQL
         }
         return $this;
     }
+
+    /** modifie le nom original de la série
+     * @param string $originalName
+     * @return TvShow
+     */
+    public function setOriginalName(string $originalName): TvShow
+    {
+        $this->originalName = $originalName;
+        return $this;
+    }
+
+    /** modifie le site de la série
+     * @param string $homepage
+     * @return TvShow
+     */
+    public function setHomepage(string $homepage): TvShow
+    {
+        $this->homepage = $homepage;
+        return $this;
+    }
+
+    /** modifie la description)
+     * @param string $overview
+     * @return TvShow
+     */
+    public function setOverview(string $overview): TvShow
+    {
+        $this->overview = $overview;
+        return $this;
+    }
 }
