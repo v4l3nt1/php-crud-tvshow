@@ -21,7 +21,7 @@ class SeasonCollection
             SELECT id, tvShowId, name, seasonNumber, posterId
             FROM season
             WHERE tvShowId = :tvShowId
-            ORDER BY name, seasonNumber
+            ORDER BY seasonNumber
             SQL
         );
 
