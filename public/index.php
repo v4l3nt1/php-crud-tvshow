@@ -6,6 +6,7 @@ use Html\AppWebPage;
 
 $webpage = new AppWebPage();
 $webpage->setTitle('Séries TV');
+$webpage->appendToMenu('./admin/tvshow-form.php', 'Ajouter');
 
 $tvshows = TvShowCollection::findAll();
 
