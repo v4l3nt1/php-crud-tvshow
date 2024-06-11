@@ -81,7 +81,7 @@ class TvShow
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
-            SELECT id, name, originaName, homepage, overview, posterId
+            SELECT id, name, originalName, homepage, overview, posterId
             FROM tvshow
             WHERE id = :id
         SQL
