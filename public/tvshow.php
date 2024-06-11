@@ -20,8 +20,9 @@ try {
 }
 
 $webpage->setTitle("{$webpage->escapeString($tvshow->getName())}");
-$webpage->appendToMenu("./admin/tvshow-form.php?tvShowId={$tvshow->getId()}", 'Modifier');
-$webpage->appendToMenu("./admin/tvshow-delete.php?tvShowId={$tvshow->getId()}", 'Supprimer');
+$webpage->appendToMenu("./admin/tvshow-form.php?tvShowId={$tvshow->getId()}", 'Modifier la Série');
+$webpage->appendToMenu("./admin/tvshow-delete.php?tvShowId={$tvshow->getId()}", 'Supprimer la Série');
+$webpage->appendToMenu("./admin/season-form.php?tvShowId={$tvshow->getId()}", 'Ajouter une Saison');
 
 if ($tvshow->getPosterId() == null)
 {
