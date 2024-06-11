@@ -28,7 +28,7 @@ if ($season->getPosterId() == null)
 {
     $jpeg = 'img/default.png';
 }else{
-    $jpeg = "poster.php?posterId={v->getPosterId()}";
+    $jpeg = "poster.php?posterId={$tvShow->getPosterId()}";
 }
 
 $webpage->appendContent(<<<HTML
