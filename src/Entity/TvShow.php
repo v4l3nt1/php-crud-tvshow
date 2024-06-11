@@ -140,4 +140,18 @@ SQL
 
         return $this;
     }
+
+    /** creer une série
+     * @param string $name
+     * @param int|null $id
+     * @return TvShow
+     */
+    public static function create(string $name, int $id = null)
+    {
+        $tvShow = new TvShow();
+        $tvShow->setName($name);
+        $tvShow->setId($id);
+
+        return $tvShow;
+    }
 }
