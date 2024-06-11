@@ -186,12 +186,14 @@ SQL
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
             UPDATE tvshow
-            SET name:=name
+            SET name=:name, originalName=:originalName, homepage=:homepage, overview=:overview
             WHERE id=:id
-SQL
-        );
+        SQL);
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':originalName', $this->getOriginalName());
+        $stmt->bindValue(':homepage', $this->getHomepage());
+        $stmt->bindValue(':overview', $this->getOverview());
 
         $stmt->execute();
 
@@ -203,14 +205,15 @@ SQL
      * @param int|null $id
      * @return TvShow
      */
-    public static function create(int $id = null, string $name, string $ogName, string $homepage, string $overview): TvShow
+    public static function create(int $id = null, string $name, string $originalName, string $homepage, string $overview, int $posterId = null): TvShow
     {
         $tvShow = new TvShow();
         $tvShow->setId($id);
         $tvShow->setName($name);
-        $tvShow->setOriginalName($ogName);
+        $tvShow->setOriginalName($originalName);
         $tvShow->setHomepage($homepage);
         $tvShow->setOverview($overview);
+        $tvShow->setPosterId($posterId);
         return $tvShow;
     }
 
@@ -221,10 +224,11 @@ SQL
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-            insert into tvshow (name,originalName,homepage,overview,posterId)
-            VALUES (:name,:originalname,:homepage,:overview,:posterid)
+            insert into tvshow (id,name,originalName,homepage,overview,posterId)
+            VALUES (:id,:name,:originalName,:homepage,:overview,:posterId)
 SQL
         );
+        $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':originalName', $this->getOriginalName());
         $stmt->bindValue(':homepage', $this->getHomepage());
