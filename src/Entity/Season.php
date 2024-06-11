@@ -215,4 +215,20 @@ class Season
         }
         return $this;
     }
+
+    /** supprimer une serie de la base de données et met son id a null
+     * @return $this
+     */
+    public function delete(): TvShow
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            DELETE FROM tvshow
+            WHERE id=:id
+            SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->execute();
+        return $this->setId(null);
+    }
 }
