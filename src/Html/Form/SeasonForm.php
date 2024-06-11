@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Html\Form;
 
 use Entity\Season;
+use Exception\ParameterException;
 use Html\StringEscaper\StringEscaper;
 
 class SeasonForm
@@ -56,5 +57,33 @@ class SeasonForm
         </form>
         HTML;
         return $html;
+    }
+
+    /**
+     * @throws ParameterException
+     */
+    public function setEntityFromQueryString(): void
+    {
+        if (!isset($_POST["id"]) || !ctype_digit($_POST["id"])) {
+            $id = null;
+        } else {
+            $id = (int) $_POST["id"];
+        }
+        if (!isset($_POST["tvShowId"]) || !ctype_digit($_POST["tvShowId"])) {
+            throw new ParameterException();
+        } else {
+            $tvShowId = (int) $_POST["tvShowId"];
+        }
+        if (!isset($_POST["name"]) || $_POST["name"] == '') {
+            throw new ParameterException();
+        } else {
+            $name = $this->stripTagsAndTrim($_POST["name"]);
+        }
+        if (!isset($_POST["seasonNumber"]) || !ctype_digit($_POST["seasonNumber"])) {
+            throw new ParameterException();
+        } else {
+            $seasonNumber = (int) $_POST["seasonNumber"];
+        }
+        $this->season = Season::create($id, $tvShowId, $name, $seasonNumber);
     }
 }
