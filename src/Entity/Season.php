@@ -16,6 +16,10 @@ class Season
     private int $seasonNumber;
     private ?int $posterId;
 
+    private function __construct()
+    {
+    }
+
     /** renvoie l'id de la saison
      * @return int
      */
