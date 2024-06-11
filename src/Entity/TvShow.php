@@ -98,10 +98,23 @@ class TvShow
     /** modifie l'id
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): TvShow
     {
         $this->id = $id;
+        return $this;
     }
 
+    public function delete(): TvShow
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            DELETE FROM tvshow
+            WHERE id=:id
+SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->execute();
+        return $this->setId(null);
 
+    }
 }
