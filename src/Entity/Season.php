@@ -10,7 +10,7 @@ use Entity\Exception\EntityNotFoundException;
 
 class Season
 {
-    private int $id;
+    private ?int $id;
     private int $tvShowId;
     private string $name;
     private int $seasonNumber;
@@ -21,9 +21,9 @@ class Season
     }
 
     /** renvoie l'id de la saison
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -52,8 +52,8 @@ class Season
         return $this->seasonNumber;
     }
 
-    /** renvoie l'id du poster
-     * @return null|int
+    /** renvoie l'id du poster de la saison
+     * @return ?int
      */
     public function getPosterId(): ?int
     {
