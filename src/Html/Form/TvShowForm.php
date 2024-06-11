@@ -38,9 +38,10 @@ class TvShowForm
     {
         $id = $this->tvShow?->getId() ?? '';
         $name = $this->escapeString($this->tvShow?->getName() ?? '');
-        $ogName = $this->escapeString($this->tvShow?->getOriginalName() ?? '');
+        $originalName = $this->escapeString($this->tvShow?->getOriginalName() ?? '');
         $homepage = $this->escapeString($this->tvShow?->getHomepage() ?? '');
         $overview = $this->escapeString($this->tvShow?->getOverview() ?? '');
+        $posterId = $this->tvShow?->getPosterId() ?? '';
 
         $html = <<<HTML
         <form method="post" action="$action">
@@ -49,8 +50,8 @@ class TvShowForm
             <label for="name">Nom</label>
             <input type="text" name="name" value="$name" required>
             
-            <label for="ogName">Nom Original</label>
-            <input type="text" name="ogName" value="$ogName" required>
+            <label for="originalName">Nom Original</label>
+            <input type="text" name="originalName" value="$originalName" required>
             
             <label for="homepage">Site Internet</label>
             <input type="text" name="homepage" value="$homepage" required>
@@ -79,10 +80,10 @@ class TvShowForm
         } else {
             $name = $this->stripTagsAndTrim($_POST["name"]);
         }
-        if (!isset($_POST["ogName"]) || $_POST["ogName"] == '') {
+        if (!isset($_POST["originalName"]) || $_POST["originalName"] == '') {
             throw new ParameterException();
         } else {
-            $ogName = $this->stripTagsAndTrim($_POST["ogName"]);
+            $originalName = $this->stripTagsAndTrim($_POST["originalName"]);
         }
         if (!isset($_POST["homepage"]) || $_POST["homepage"] == '') {
             throw new ParameterException();
@@ -94,7 +95,7 @@ class TvShowForm
         } else {
             $overview = $this->stripTagsAndTrim($_POST["overview"]);
         }
-        $this->tvShow = TvShow::create($id, $name, $ogName, $homepage, $overview);
+        $this->tvShow = TvShow::create($id, $name, $originalName, $homepage, $overview);
     }
 
 }
