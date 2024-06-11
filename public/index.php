@@ -11,7 +11,7 @@ $tvshows = TvShowCollection::findAll();
 
 $webpage->appendContent("<div class='list'>\n");
 foreach ($tvshows as $tvshow) {
-    $webpage->appendContent("            <div class='show'>\n");
+    $webpage->appendContent("            <a class='show' href='tvshow.php?tvShowId={$tvshow->getId()}'>\n");
     $webpage->appendContent(<<<HTML
                                             <div class='poster'>
                                                 <img src='poster.php?posterId={$tvshow->getPosterId()}' alt='Affiche de la série'>
@@ -23,7 +23,7 @@ foreach ($tvshows as $tvshow) {
                                                 <p class='overview'>{$webpage->escapeString($tvshow->getOverview())}</p>
                                             </div>\n
                             HTML);
-    $webpage->appendContent("            </div>\n\n");
+    $webpage->appendContent("            </a>\n\n");
 }
 
 
