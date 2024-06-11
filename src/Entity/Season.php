@@ -178,4 +178,28 @@ class Season
 
         return $this;
     }
+
+    /** ajouter à la base de données (table season)
+     * @return $this
+     */
+    private function insert()
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            INSERT INTO season (id,tvShowId,name,seasonNumber,posterId)
+            VALUES (:id,:tvShowId,:name,:seasonNumber,:posterId)
+        SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':tvShowId', $this->getTvShowId());
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':seasonNumber', $this->getSeasonNumber());
+        $stmt->bindValue(':posterId', $this->getPosterId());
+
+        $stmt->execute();
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        return $this;
+    }
 }
