@@ -37,14 +37,14 @@ HTML);
 $seasons = $tvshow->getSeasons();
 foreach ($seasons as $season) {
     $webpage->appendContent(<<<HTML
-            <div class="season">
+            <a class="season" href="season.php?seasonId={$season->getId()}">
                 <div class="seasonPoster">
                     <img src='poster.php?posterId={$season->getPosterId()}' alt='Affiche de la saison'>
                 </div>
                 <div class="seasonName">
                     <p>{$webpage->escapeString($season->getName())}</p>
                 </div>
-            </div>\n\n
+            </a>\n\n
 HTML);
 }
 $webpage->appendContent("        </div>");
