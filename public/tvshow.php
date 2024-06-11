@@ -20,6 +20,8 @@ try {
 }
 
 $webpage->setTitle("{$webpage->escapeString($tvshow->getName())}");
+$webpage->appendToMenu("./admin/tvshow-form.php?tvShowId={$tvshow->getId()}", 'Modifier');
+$webpage->appendToMenu("./admin/tvshow-delete.php?tvShowId={$tvshow->getId()}", 'Supprimer');
 
 $webpage->appendContent(<<<HTML
 <div class="main">
