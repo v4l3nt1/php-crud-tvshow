@@ -216,14 +216,14 @@ class Season
         return $this;
     }
 
-    /** supprimer une serie de la base de données et met son id a null
+    /** supprimer une saison de la base de données et met son id a null
      * @return $this
      */
-    public function delete(): TvShow
+    public function delete(): Season
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-            DELETE FROM tvshow
+            DELETE FROM season
             WHERE id=:id
             SQL
         );
