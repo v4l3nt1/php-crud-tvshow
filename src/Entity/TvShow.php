@@ -146,12 +146,14 @@ SQL
      * @param int|null $id
      * @return TvShow
      */
-    public static function create(string $name, int $id = null)
+    public static function create(int $id = null, string $name, string $ogName, string $homepage, string $overview): TvShow
     {
         $tvShow = new TvShow();
-        $tvShow->setName($name);
         $tvShow->setId($id);
-
+        $tvShow->setName($name);
+        $tvShow->setOriginalName($ogName);
+        $tvShow->setHomepage($homepage);
+        $tvShow->setOverview($overview);
         return $tvShow;
     }
 
