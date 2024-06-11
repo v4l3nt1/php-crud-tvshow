@@ -18,41 +18,44 @@ if (!isset($_GET["seasonId"]) or !ctype_digit($_GET["seasonId"])) {
 
 $webpage = new AppWebPage();
 $season = Season::findById((int)$_GET["seasonId"]);
-$tvShow = TvShow::findById($season->tvShowId);
-$episodes = Season::getEpisodes();
+$tvShow = TvShow::findById($season->getTvShowId());
+$episodes = $season->getEpisodes();
+
+$webpage->setTitle($tvShow->getName()." : ".$season->getName()
+);
 
 $webpage->appendContent(<<<HTML
-
-                            <div class="info">
-                                <div class="title">
-                                   <p>Série TV : {$tvShow->getName()}</p>
+                            <div class="main">
+                                <div class="seasonPoster">
+                                    <img src='poster.php?posterId={$season->getPosterId()}' alt='Affiche de la saison'>
                                 </div>
-                                <div class="season_title">
-                                    <p>$season->getName()</p>
+                                <div class="name tvShow">
+                                    {$tvShow->getName()}
+                                </div>
+                                <div class="name season">
+                                    {$season->getName()}
                                 </div>
                             </div>
                             <div class="list">
-                               
-                             
-
+                                                           
 
 HTML);
 
-foreach ($episodes as $episode){
+foreach ($episodes as $episode) {
     $webpage->appendContent(<<<HTML
 
                                 <div class="episode">
-                                    <p>{$episode->getEpisodeNumber}</p>
-                                    <p>{$episode->getName}</p>
-                                    <p>{$episode->getOverview}</p>
+                                    <p>{$episode->getEpisodeNumber()}</p>
+                                    <p>{$episode->getName()}</p>
+                                    <p>{$episode->getOverview()}</p>
                                 </div>
 
-HTML);
-
+HTML
+    );
+}
 $webpage->appendContent(<<<HTML
                             </div>
 HTML
 );
 
 echo $webpage->toHTML();
-}
