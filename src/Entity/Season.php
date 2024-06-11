@@ -60,6 +60,56 @@ class Season
         return $this->posterId;
     }
 
+    /** modifie l'id de la saison
+     * @param ?int $id
+     * @return Season
+     */
+    public function setId(?int $id): Season
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /** modifie l'id de la série
+     * @param int $tvShowId
+     * @return Season
+     */
+    public function setTvShowId(int $tvShowId): Season
+    {
+        $this->tvShowId = $tvShowId;
+        return $this;
+    }
+
+    /** modifie le nom de la saison
+     * @param string $name
+     * @return Season
+     */
+    public function setName(string $name): Season
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /** modifie le numéro de la saison
+     * @param int $seasonNumber
+     * @return Season
+     */
+    public function setSeasonNumber(int $seasonNumber): Season
+    {
+        $this->seasonNumber = $seasonNumber;
+        return $this;
+    }
+
+    /** modifie l'id du poster de la saison
+     * @param ?int $posterId
+     * @return Season
+     */
+    public function setPosterId(?int $posterId): Season
+    {
+        $this->posterId = $posterId;
+        return $this;
+    }
+
     /** Renvoie une liste d'épisodes correspondant à la saison courante
      * @return Episode[]
      */
