@@ -12,7 +12,7 @@ Composer doit être installé sur votre machine. Il peut
 
 Clonez le dépôt avec :
 ```bash
-git clone https://iut-info.univ-reims.fr/gitlab/rich0190/sae201.git
+git clone https://iut-info.univ-reims.fr/gitlab/rich0190/php-crud-tvshow.git
 ```
 
 Et, installez les extensions nécessaires avec :
@@ -59,8 +59,8 @@ composer fix:cs
 
 Avant de commencer les classes et pages nous avons créer la base de données
 
-![creation de la table](../supportSAE/img/create-bd.png)
+![creation de la table](img/create-bd.png)
 
 En suite nous importons la base de données dans notre base
 
-![import des tables](../supportSAE/img/import-into-bd.png)
+![import des tables](img/import-into-bd.png)
