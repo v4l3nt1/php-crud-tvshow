@@ -171,4 +171,28 @@ SQL
         $this->name = $name;
         return $this;
     }
+
+    /** ajouter à la base de données
+     * @return $this
+     */
+    private function insert()
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            insert into tvshow (name,originalName,homepage,overview,posterId)
+            VALUES (:name,:originalname,:homepage,:overview,:posterid)
+SQL
+        );
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':originalName', $this->getOriginalName());
+        $stmt->bindValue(':homepage', $this->getHomepage());
+        $stmt->bindValue(':overview', $this->getOverview());
+        $stmt->bindValue(':posterId', $this->getPosterId());
+
+        $stmt->execute();
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        return $this;
+    }
 }
