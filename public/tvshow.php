@@ -23,10 +23,17 @@ $webpage->setTitle("{$webpage->escapeString($tvshow->getName())}");
 $webpage->appendToMenu("./admin/tvshow-form.php?tvShowId={$tvshow->getId()}", 'Modifier');
 $webpage->appendToMenu("./admin/tvshow-delete.php?tvShowId={$tvshow->getId()}", 'Supprimer');
 
+if ($tvshow->getPosterId() == null)
+{
+    $jpeg = 'img/default.png';
+}else{
+    $jpeg = "poster.php?posterId={$tvshow->getPosterId()}";
+}
+
 $webpage->appendContent(<<<HTML
 <div class="main">
             <div class='poster'>
-                <img src='poster.php?posterId={$tvshow->getPosterId()}' alt='Affiche de la série'>
+                <img src='$jpeg' alt='Affiche de la série'>
             </div>
             <div class="info">
                 <div class="name">Titre série : {$webpage->escapeString($tvshow->getName())}</div>
