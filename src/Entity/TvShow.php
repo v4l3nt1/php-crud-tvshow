@@ -104,6 +104,9 @@ class TvShow
         return $this;
     }
 
+    /** supprimer une serie de la base de données et met son id a null
+     * @return $this
+     */
     public function delete(): TvShow
     {
         $stmt = MyPdo::getInstance()->prepare(
@@ -116,5 +119,25 @@ SQL
         $stmt->execute();
         return $this->setId(null);
 
+    }
+
+    /** met a jour dans la base de données la série à partir du nom de l'id de l'instance
+     * @return $this
+     */
+    public function update(): TvShow
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            UPDATE tvshow
+            SET name:=name
+            WHERE id=:id
+SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':name', $this->getName());
+
+        $stmt->execute();
+
+        return $this;
     }
 }
