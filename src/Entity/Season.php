@@ -158,4 +158,24 @@ class Season
         $season->setPosterId($posterId);
         return $season;
     }
+
+    /** met a jour dans la base de données la saison à partir de l'id de l'instance
+     * @return Season
+     */
+    public function update(): Season
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            UPDATE season
+            SET name=:name, seasonNumber=:seasonNumber
+            WHERE id=:id
+        SQL);
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':seasonNumber', $this->getSeasonNumber());
+
+        $stmt->execute();
+
+        return $this;
+    }
 }
