@@ -112,13 +112,23 @@ class TvShow
         return $this;
     }
 
-    /** modifie la description)
+    /** modifie la description de la série
      * @param string $overview
      * @return TvShow
      */
     public function setOverview(string $overview): TvShow
     {
         $this->overview = $overview;
+        return $this;
+    }
+
+    /** modifie l'id du poster
+     * @param ?int $posterId
+     * @return TvShow
+     */
+    public function setPosterId(?int $posterId): TvShow
+    {
+        $this->posterId = $posterId;
         return $this;
     }
 
@@ -130,7 +140,7 @@ class TvShow
         return SeasonCollection::findByTvShowId($this->getId());
     }
 
-    /** permet de recuperer une saison à partir d'un id
+    /** permet de recuperer une série à partir d'un id
      * @param int $id
      * @return TvShow
      */
