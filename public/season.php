@@ -24,10 +24,17 @@ $episodes = $season->getEpisodes();
 $webpage->setTitle($tvShow->getName()." : ".$season->getName()
 );
 
+if ($season->getPosterId() == null)
+{
+    $jpeg = 'img/default.png';
+}else{
+    $jpeg = "poster.php?posterId={v->getPosterId()}";
+}
+
 $webpage->appendContent(<<<HTML
                             <div class="main">
                                 <div class="seasonPoster">
-                                    <img src='poster.php?posterId={$season->getPosterId()}' alt='Affiche de la saison'>
+                                    <img src='$jpeg' alt='Affiche de la saison'>
                                 </div>
                                 <div class="info">
                                     <div class="name tvShow">
