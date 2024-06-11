@@ -64,7 +64,7 @@ body {
     flex-grow : 1;
 }
 
-.name, .ogName {
+.main .name, .ogName {
     display: flex;
     justify-content: flex-end;
 }
