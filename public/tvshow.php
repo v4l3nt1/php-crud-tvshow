@@ -38,10 +38,16 @@ $webpage->appendContent(<<<HTML
 HTML);
 $seasons = $tvshow->getSeasons();
 foreach ($seasons as $season) {
+    if ($season->getPosterId() == null)
+    {
+        $jpeg = 'img/default.png';
+    }else{
+        $jpeg = "poster.php?posterId={$season->getPosterId()}";
+    }
     $webpage->appendContent(<<<HTML
             <a class="season" href="season.php?seasonId={$season->getId()}">
                 <div class="seasonPoster">
-                    <img src='poster.php?posterId={$season->getPosterId()}' alt='Affiche de la saison'>
+                    <img src=$jpeg alt='Affiche de la saison'>
                 </div>
                 <div class="seasonName">
                     <p>{$webpage->escapeString($season->getName())}</p>
