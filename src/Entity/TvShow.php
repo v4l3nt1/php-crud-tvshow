@@ -94,4 +94,118 @@ class TvShow
             return $show;
         }
     }
+
+    /** modifie l'id
+     * @param int $id
+     */
+    public function setId(?int $id): TvShow
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /** supprimer une serie de la base de données et met son id a null
+     * @return $this
+     */
+    public function delete(): TvShow
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            DELETE FROM tvshow
+            WHERE id=:id
+SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->execute();
+        return $this->setId(null);
+
+    }
+
+    /** met a jour dans la base de données la série à partir du nom de l'id de l'instance
+     * @return $this
+     */
+    public function update(): TvShow
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            UPDATE tvshow
+            SET name:=name
+            WHERE id=:id
+SQL
+        );
+        $stmt->bindValue(':id', $this->getId());
+        $stmt->bindValue(':name', $this->getName());
+
+        $stmt->execute();
+
+        return $this;
+    }
+
+    /** creer une série
+     * @param string $name
+     * @param int|null $id
+     * @return TvShow
+     */
+    public static function create(string $name, int $id = null)
+    {
+        $tvShow = new TvShow();
+        $tvShow->setName($name);
+        $tvShow->setId($id);
+
+        return $tvShow;
+    }
+
+    /**
+     * sert à créer l'instance pour la fonction create
+     */
+    private function __construct()
+    {
+    }
+
+    /** modifie le nom
+     * @param $name
+     * @return TvShow
+     */
+    private function setName($name): TvShow
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /** ajouter à la base de données
+     * @return $this
+     */
+    private function insert()
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+            insert into tvshow (name,originalName,homepage,overview,posterId)
+            VALUES (:name,:originalname,:homepage,:overview,:posterid)
+SQL
+        );
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':originalName', $this->getOriginalName());
+        $stmt->bindValue(':homepage', $this->getHomepage());
+        $stmt->bindValue(':overview', $this->getOverview());
+        $stmt->bindValue(':posterId', $this->getPosterId());
+
+        $stmt->execute();
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        return $this;
+    }
+
+    /** sauvegarde la série dans la base de données
+     * @return $this
+     */
+    public function save()
+    {
+        if ($this->getId() == null) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
+        return $this;
+    }
 }
