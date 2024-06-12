@@ -10,8 +10,6 @@ $webpage = new AppWebPage();
 $webpage->setTitle('Séries TV');
 $webpage->appendToMenu('./admin/tvshow-form.php', 'Ajouter');
 
-$tvshows = TvShowCollection::findAll();
-
 $webpage->appendContent(<<<HTML
                                     <form action="index.php"
                                         <ul class="genre-list">
@@ -23,10 +21,10 @@ $genrelist=GenreCollection::getAll();
 foreach ($genrelist as $genre) {
     $webpage->appendContent(<<<HTML
     
-                                            <li>
+                                            <div class="genre">
                                                 <label for="genre{$genre->getName()}">{$genre->getName()}</label>
                                                 <input type="checkbox" id="genre" name="genre{$genre->getName()}">
-                                            </li>
+                                            </div>
                                             
 
 HTML);
@@ -37,6 +35,23 @@ $webpage->appendContent(<<<HTML
                                         <input type="submit" value="Envoyer">
                                     </form action="index.php"
 HTML);
+
+$genresChose = [];
+    foreach ($genrelist as $genre)
+    {
+        if (isset($_GET["genre{$genre->getName()}"])&&$_GET["genre{$genre->getName()}"]=="on")
+        {
+            $genresChose+=[$genre->getId()];
+        }
+    }
+
+if(count($genresChose)==0)
+{
+    $tvshows = TvShowCollection::findAll();
+}else{
+    $tvshows = TvShowCollection::getTvShowByGenre($genresChose);
+}
+
 
 $webpage->appendContent("<div class='list'>\n");
 foreach ($tvshows as $tvshow) {
