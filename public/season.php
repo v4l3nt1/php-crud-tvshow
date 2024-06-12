@@ -41,10 +41,10 @@ $webpage->appendContent(<<<HTML
                                 </div>
                                 <div class="info">
                                     <div class="name tvShow">
-                                        <a href="tvshow.php?tvShowId={$tvShow->getId()}">{$tvShow->getName()}</a>
+                                        <div class="name"><a href="{$webpage->escapeString($tvShow->getHomepage())}">{$webpage->escapeString($tvShow->getName())}</a></div>
                                     </div>
                                     <div class="name season">
-                                        {$season->getName()}
+                                        {$webpage->escapeString($season->getName())}
                                     </div>
                                  </div>
                             </div>
