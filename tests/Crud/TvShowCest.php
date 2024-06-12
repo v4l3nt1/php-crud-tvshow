@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Crud;
+use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
 use Entity\TvShow;
 use Tests\CrudTester;
@@ -46,5 +47,26 @@ class TvShowCest
         $I->assertSame('Goth', $tvshow->getName());
     }
 
+    public function insert(CrudTester $I)
+    {
+        $tvshow = TvShow::create(null, 'test1', 'test1', 'http://test1.com', 'test1', null);
+        $tvshow->save();
+        $id = (int)MyPdo::getInstance()->lastInsertId();
+        $I->canSeeNumRecords(1, 'tvshow', [
+            'id' => $id,
+            'name' => 'test1',
+            'originalName' => 'test1',
+            'homepage' => 'http://test1.com',
+            'overview' => 'test1',
+            'posterId' => null
+
+        ]);
+        $I->assertSame($id, $tvshow->getId());
+        $I->assertSame('test1', $tvshow->getName());
+        $I->assertSame('test1', $tvshow->getOriginalName());
+        $I->assertSame('http://test1.com', $tvshow->getHomepage());
+        $I->assertSame('test1', $tvshow->getOverview());
+        $I->assertNull($tvshow->getPosterId());
+    }
 
 }
