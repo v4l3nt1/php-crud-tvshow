@@ -38,7 +38,7 @@ $webpage->appendContent(<<<HTML
                 <img src='$jpeg' alt='Affiche de la série'>
             </div>
             <div class="info">
-                <div class="name">Titre série : {$webpage->escapeString($tvshow->getName())}</div>
+                <div class="name">Titre série :&nbsp;<a href="{$webpage->escapeString($tvshow->getHomepage())}">{$webpage->escapeString($tvshow->getName())}</a></div>
                 <div class="ogName">Titre original : {$webpage->escapeString($tvshow->getOriginalName())}</div>
                 <div class="desc"> Description : <br> {$webpage->escapeString($tvshow->getOverview())}</div>
             </div>
