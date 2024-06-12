@@ -14,7 +14,7 @@ try {
     } else {
         $season = Season::findById((int)$_GET["seasonId"]);
         $season->delete();
-        header("Location: /index.php");
+        header("Location: /tvshow.php?tvShowId={$season->getTvShowId()}");
         exit();
     }
 
