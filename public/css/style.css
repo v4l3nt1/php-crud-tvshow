@@ -13,106 +13,288 @@ body {
     margin: 0;
 }
 
-.header, button, .content, .footer, .show, .season, .episode, .menu, .menu>a, .genre-list {
+.header, button, .content, .footer, .show, .season, .episode, .menu, .aMenu, .genre-list {
     border: 2px solid black;
     padding: 5px;
     margin: 5px;
 }
 
-.menu {
-    flex-grow: 1;
-    display : flex;
-    justify-content: space-evenly;
+.genre-list{
+    display: none;
 }
 
-
-.main {
-    border: 4px solid red;
-    padding: 5px;
-    margin: 5px;
+.menu-toggle{
+    display: none;
 }
 
-.header {
-    text-align: center;
+.menu-icon{
+    border: solid 2px;
+    padding: 2px;
+    background: dimgray;
+    color: white;
 }
 
-.content {
-    overflow: scroll;
-}
-
-.list {
+.menu-toggle:checked ~ .genre-list{
     display: flex;
     flex-direction: column;
 }
-.show, .season, .menu>a {
+
+.header{
+    max-height: 10%;
+}
+
+.header h1{
+    text-align: center;
+    max-height: 10%;
+    font-size: large;
+}
+
+.list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.menu{
     display: flex;
+    justify-content: space-evenly;
+}
+
+#mainSeason{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mainSeason>.info{
+    width: 100%;
+}
+
+.episode>p~p{
+    text-align: justify;
+}
+
+.menu a{
     text-decoration: none;
     color: black;
 }
 
-.info {
+.overview{
+    display: none;
+}
+
+.show{
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-.show:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.poster {
-    grid-row: span 2;
-}
-
-.season, .main {
-    display : flex;
-}
-
-.seasonName {
-    flex-grow : 1;
-}
-
-.main .name, .ogName {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.desc {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-evenly;
-}
-
-.season{
-    border: none;
-}
-
-.tvShow>a{
+    flex-direction: column-reverse;
+    align-items: center;
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
-.episode{
-    display: flex;
-    flex-direction: column;
-}
-
-.episode p{
+.poster{
     flex-shrink: 1;
+    display: flex;
 }
 
-.content>form {
+.poster *{
+    max-width: 100%;
+}
+
+.info{
+    height: fit-content;
+    margin: 3px;
     display: flex;
     flex-direction: column;
-}
-.genre-list{
-    display: flex;
     justify-content: space-evenly;
+    flex-grow: 1;
 }
 
-.genre{
-    border: 1px solid black;
-    padding: 2px;
+.info>.name{
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer *{
+    margin: 0;
+}
+
+.aMenu{
+    display: none;
+}
+
+.aImg{
     display: flex;
-    align-content: center;
+    justify-content: center;
+}
+
+.menu>a>img{
+    max-width: 35%;
+
+}
+
+#mainTvshow>.poster{
+    flex-shrink: 0;
+    display: none;
+}
+
+#mainTvshow{
+    display: flex;
+}
+
+.seasonPoster,.seasonName{
+    width: fit-content;
+}
+
+@media (min-width: 500px){
+    .list{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #listTvshow{
+        display: grid;
+        grid-template-columns: 1fr 1fr
+    }
+
+    #listTvshow>.season{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+    }
+
+    .overview{
+        display: unset;
+    }
+
+    .show{
+        flex-direction: row;
+    }
+
+    .poster{
+        flex-shrink: 0;
+    }
+
+    .show:nth-child(odd) {
+        flex-direction: row;
+    }
+
+    .show:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .info>.overview{
+        font-size: small;
+    }
+}
+
+@media (min-width: 600px){
+    .info>.overview{
+        font-size: medium;
+    }
+
+    .info>.name{
+        text-align: unset;
+    }
+
+    .menu>a>img{
+        display: none;
+    }
+
+    .menu>a{
+        display: unset;
+    }
+
+    .content{
+        overflow: scroll;
+    }
+
+    #mainSeason{
+        flex-direction: row;
+        align-items: unset;
+    }
+
+    #mainSeason .info{
+        text-align: right;
+        align-items: flex-end;
+        flex-grow: 1;
+    }
+
+    .name.season{
+        border:0;
+    }
+
+    #mainTvshow>.poster{
+        display: unset;
+    }
+
+    .aImg{
+        display: none;
+        width: 0;
+    }
+
+    .name,.ogName{
+        width: fit-content;
+        align-self: flex-end;
+    }
+
+}
+
+@media (min-width: 1000px){
+    .genre-list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .menu-icon{
+        display: none;
+    }
+
+    .genre-toggle{
+        display: none;
+    }
+
+    .genre{
+        margin: 5px;
+    }
+
+    .genre-toggle ~ label{
+        padding: 2px;
+    }
+
+    .genre-toggle ~ label{
+        background-color: lightgray;
+        border: solid 2px dimgray;
+    }
+
+    .genre-toggle:checked ~ label{
+        background-color: dimgray;
+        border: solid 2px dimgray;
+    }
+
+    #listTvshow{
+        display: flex
+
+    }
+
+    #listTvshow>.season{
+        flex-direction: row;
+    }
+
+    .seasonName{
+        margin: 5px;
+        font-size: larger;
+    }
+
+    .name,.ogName{
+        width: fit-content;
+        align-self: flex-end;
+    }
+}
+
+@media (min-width: 1200px){
+    .genre-list{
+        justify-content: space-evenly;
+    }
 }

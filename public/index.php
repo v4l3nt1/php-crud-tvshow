@@ -12,8 +12,10 @@ $webpage->appendToMenu('./admin/tvshow-form.php', 'Ajouter');
 
 $webpage->appendContent(<<<HTML
                                     <form action="index.php">
+                                        <input type="checkbox" id="menu-toggle" class="menu-toggle"> 
+                                            <label for="menu-toggle" class="menu-icon">☰ Menu</label>
+                                        </input>
                                         <div class="genre-list">
-
 HTML);
 
 $genrelist=GenreCollection::getAll();
@@ -22,8 +24,9 @@ foreach ($genrelist as $genre) {
     $webpage->appendContent(<<<HTML
     
                                             <div class="genre">
-                                                <label for="genre{$genre->getName()}">{$genre->getName()}</label>
-                                                <input type="checkbox" id="genre" name="genre{$genre->getName()}">
+                                                <input type="checkbox" id="genre{$genre->getName()}" name="genre{$genre->getName()}" class="genre-toggle">
+                                                    <label for="genre{$genre->getName()}">{$genre->getName()}</label>
+                                                </input>
                                             </div>
 
 HTML);

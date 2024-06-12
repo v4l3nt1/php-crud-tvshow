@@ -35,7 +35,7 @@ if ($season->getPosterId() == null)
 }
 
 $webpage->appendContent(<<<HTML
-                            <div class="main">
+                            <div class="main" id="mainSeason">
                                 <div class="seasonPoster">
                                     <img src='$jpeg' alt='Affiche de la saison'>
                                 </div>
@@ -48,7 +48,7 @@ $webpage->appendContent(<<<HTML
                                     </div>
                                  </div>
                             </div>
-                            <div class="list">
+                            <div class="list" id="listSeason">
                                                            
 
 HTML);
