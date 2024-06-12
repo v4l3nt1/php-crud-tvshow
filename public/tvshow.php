@@ -33,7 +33,7 @@ if ($tvshow->getPosterId() == null)
 }
 
 $webpage->appendContent(<<<HTML
-<div class="main">
+<div class="main" id="mainTvshow">
             <div class='poster'>
                 <img src='$jpeg' alt='Affiche de la série'>
             </div>
@@ -43,7 +43,7 @@ $webpage->appendContent(<<<HTML
                 <div class="desc"> Description : <br> {$webpage->escapeString($tvshow->getOverview())}</div>
             </div>
         </div>                       
-        <div class='list'>\n
+        <div class='list' id="listTvshow">\n
 HTML);
 $seasons = $tvshow->getSeasons();
 foreach ($seasons as $season) {
