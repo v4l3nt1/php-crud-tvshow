@@ -30,7 +30,7 @@ body {
 .menu-icon{
     border: solid 2px;
     padding: 2px;
-    background: darkslateblue;
+    background: dimgray;
     color: white;
 }
 
@@ -229,6 +229,15 @@ body {
         display: unset;
     }
 
+    .aImg{
+        display: none;
+        width: 0;
+    }
+
+    .name,.ogName{
+        width: fit-content;
+        align-self: flex-end;
+    }
 
 }
 
