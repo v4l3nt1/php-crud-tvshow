@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.header, button, .content, .footer, .show, .season, .episode, .menu, .menu>a, .genre-list {
+.header, button, .content, .footer, .show, .season, .episode, .menu, .aMenu, .genre-list {
     border: 2px solid black;
     padding: 5px;
     margin: 5px;
@@ -56,7 +56,21 @@ body {
 
 .menu{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+#mainSeason{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mainSeason>.info{
+    width: 100%;
+}
+
+.episode>p~p{
+    text-align: justify;
 }
 
 .menu a{
@@ -74,7 +88,6 @@ body {
     align-items: center;
     text-decoration: none;
     color: black;
-    font-weight: bold;
 }
 
 .poster{
@@ -86,16 +99,193 @@ body {
     max-width: 100%;
 }
 
-.info>.name{
-    margin: 0;
-
-}
-
 .info{
     height: fit-content;
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.info>.name{
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
 }
 
 .footer *{
     margin: 0;
 }
 
+.aMenu{
+    display: none;
+}
+
+.aImg{
+    display: flex;
+    justify-content: center;
+}
+
+.menu>a>img{
+    max-width: 35%;
+
+}
+
+#mainTvshow>.poster{
+    flex-shrink: 0;
+    display: none;
+}
+
+#mainTvshow{
+    display: flex;
+}
+
+.seasonPoster,.seasonName{
+    width: fit-content;
+}
+
+@media (min-width: 500px){
+    .list{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #listTvshow{
+        display: grid;
+        grid-template-columns: 1fr 1fr
+    }
+
+    #listTvshow>.season{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+    }
+
+    .overview{
+        display: unset;
+    }
+
+    .show{
+        flex-direction: row;
+    }
+
+    .poster{
+        flex-shrink: 0;
+    }
+
+    .show:nth-child(odd) {
+        flex-direction: row;
+    }
+
+    .show:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .info>.overview{
+        font-size: small;
+    }
+}
+
+@media (min-width: 600px){
+    .info>.overview{
+        font-size: medium;
+    }
+
+    .info>.name{
+        text-align: unset;
+    }
+
+    .menu>a>img{
+        display: none;
+    }
+
+    .menu>a{
+        display: unset;
+    }
+
+    .content{
+        overflow: scroll;
+    }
+
+    #mainSeason{
+        flex-direction: row;
+        align-items: unset;
+    }
+
+    #mainSeason .info{
+        text-align: right;
+        align-items: flex-end;
+        flex-grow: 1;
+    }
+
+    .name.season{
+        border:0;
+    }
+
+    #mainTvshow>.poster{
+        display: unset;
+    }
+
+
+}
+
+@media (min-width: 1000px){
+    .genre-list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .menu-icon{
+        display: none;
+    }
+
+    .genre-toggle{
+        display: none;
+    }
+
+    .genre{
+        margin: 5px;
+    }
+
+    .genre-toggle ~ label{
+        padding: 2px;
+    }
+
+    .genre-toggle ~ label{
+        background-color: lightgray;
+        border: solid 2px dimgray;
+    }
+
+    .genre-toggle:checked ~ label{
+        background-color: dimgray;
+        border: solid 2px dimgray;
+    }
+
+    #listTvshow{
+        display: flex
+
+    }
+
+    #listTvshow>.season{
+        flex-direction: row;
+    }
+
+    .seasonName{
+        margin: 5px;
+        font-size: larger;
+    }
+
+    .name,.ogName{
+        width: fit-content;
+        align-self: flex-end;
+    }
+}
+
+@media (min-width: 1200px){
+    .genre-list{
+        justify-content: space-evenly;
+    }
+}
