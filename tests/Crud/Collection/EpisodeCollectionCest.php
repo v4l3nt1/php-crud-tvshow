@@ -1,8 +1,11 @@
 <?php
+
 namespace Tests\Crud\Collection;
+
 use Entity\Collection\EpisodeCollection;
 use Entity\Episode;
 use Tests\CrudTester;
+
 class EpisodeCollectionCest
 {
     public function findBySeasonId(CrudTester $I)

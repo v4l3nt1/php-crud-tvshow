@@ -169,7 +169,8 @@ class Season
             UPDATE season
             SET name=:name, seasonNumber=:seasonNumber
             WHERE id=:id
-        SQL);
+        SQL
+        );
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':seasonNumber', $this->getSeasonNumber());

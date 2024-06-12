@@ -25,10 +25,9 @@ $webpage->appendToMenu("./admin/tvshow-form.php?tvShowId={$tvshow->getId()}", 'M
 $webpage->appendToMenu("./admin/tvshow-delete.php?tvShowId={$tvshow->getId()}", 'Supprimer la Série');
 $webpage->appendToMenu("./admin/season-form.php?tvShowId={$tvshow->getId()}", 'Ajouter une Saison');
 
-if ($tvshow->getPosterId() == null)
-{
+if ($tvshow->getPosterId() == null) {
     $jpeg = 'img/default.png';
-}else{
+} else {
     $jpeg = "poster.php?posterId={$tvshow->getPosterId()}";
 }
 
@@ -47,10 +46,9 @@ $webpage->appendContent(<<<HTML
 HTML);
 $seasons = $tvshow->getSeasons();
 foreach ($seasons as $season) {
-    if ($season->getPosterId() == null)
-    {
+    if ($season->getPosterId() == null) {
         $jpeg = 'img/default.png';
-    }else{
+    } else {
         $jpeg = "poster.php?posterId={$season->getPosterId()}";
     }
     $webpage->appendContent(<<<HTML
