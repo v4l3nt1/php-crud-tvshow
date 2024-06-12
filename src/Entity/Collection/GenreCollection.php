@@ -6,6 +6,7 @@ namespace Entity\Collection;
 
 use Database\MyPdo;
 use Entity\Genre;
+use PDO;
 
 class GenreCollection{
 
