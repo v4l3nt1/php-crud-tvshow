@@ -7,10 +7,15 @@ html {
 
 body {
     height: 100%;
-    width: 90%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     margin: 0;
+    background-color: lightgray;
+}
+
+body *{
+    border-radius: 5px;
 }
 
 .header, button, .content, .footer, .show, .season, .episode, .menu, .aMenu, .genre-list {
@@ -28,7 +33,6 @@ body {
 }
 
 .menu-icon{
-    border: solid 2px;
     padding: 2px;
     background: dimgray;
     color: white;
@@ -187,6 +191,10 @@ body {
     .info>.overview{
         font-size: small;
     }
+
+    body{
+        width: 90%;
+    }
 }
 
 @media (min-width: 600px){
@@ -229,7 +237,13 @@ body {
         display: unset;
     }
 
+
+    .aMenu{
+        justify-self: flex-end;
+    }
+
     .aImg{
+        justify-self: center;
         display: none;
         width: 0;
     }
@@ -237,6 +251,10 @@ body {
     .name,.ogName{
         width: fit-content;
         align-self: flex-end;
+    }
+
+    .show .name{
+        align-self: flex-start;
     }
 
 }

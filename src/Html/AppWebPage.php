@@ -66,6 +66,7 @@ class AppWebPage extends WebPage
 
         if ($menu != []) {
             $html .= '<div class="menu">';
+            $html .= "<a href='' class=''></a>";
             foreach ($menu as $name => $path) {
                 $html .= "<a href=$path class='aMenu'>$name</a>";
                 $html .= "<a href=$path class='aImg'><img src='img/$name.png' alt=$name></a>";
