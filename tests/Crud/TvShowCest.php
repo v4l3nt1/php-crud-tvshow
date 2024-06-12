@@ -69,4 +69,25 @@ class TvShowCest
         $I->assertNull($tvshow->getPosterId());
     }
 
+    public function createWithoutId(CrudTester $I)
+    {
+        $tvshow = TvShow::create(null, 'test2', 'test2', 'http://test2.com', 'test2', null);
+        $I->assertNull($tvshow->getId());
+        $I->assertSame('test2', $tvshow->getName());
+        $I->assertSame('test2', $tvshow->getOriginalName());
+        $I->assertSame('http://test2.com', $tvshow->getHomepage());
+        $I->assertSame('test2', $tvshow->getOverview());
+        $I->assertNull($tvshow->getPosterId());
+    }
+
+    public function createWithId(CrudTester $I)
+    {
+        $tvshow = TvShow::create(8,'test3', 'test3', 'http://test3.com', 'test3', 6);
+        $I->assertSame(8, $tvshow->getId());
+        $I->assertSame('test3', $tvshow->getName());
+        $I->assertSame('test3', $tvshow->getOriginalName());
+        $I->assertSame('http://test3.com', $tvshow->getHomepage());
+        $I->assertSame('test3', $tvshow->getOverview());
+        $I->assertSame(6, $tvshow->getPosterId());
+    }
 }
