@@ -85,4 +85,8 @@ Pour la structuration de nos pages web, nous utilisons une classe WebPage permet
 l'utilisation de nombreuses fonctionnalités pour faciliter le développement HTML. Couplée à 
 la classe AppWebPage, nous pouvons implémenter un menu intéractif très simplement.
 
-Concernant ce menu interactif, nous avons fait en sorte qu'il permette 
+Concernant ce menu interactif, nous avons fait en sorte qu'il permette de naviguer dans le site 
+de la manière la plus simple possible, vous pouvez retourner à la page d'accueil à partir de 
+toutes les autres pages, Vous pouvez ajouter des séries et des saisons, ainsi que les 
+modifier et les supprimer. les boutons de modification et de suppression se
+trouvent sur leur page dédiée.
