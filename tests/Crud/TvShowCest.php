@@ -23,5 +23,14 @@ class TvShowCest
         });
     }
 
+    public function delete(CrudTester $I)
+    {
+        $tvshow = TvShow::findById(25);
+        $tvshow->delete();
+        $I->cantSeeInDatabase('tvshow', ['id' => 25]);
+        $I->cantSeeInDatabase('tvshow', ['name' => 'Futurama']);
+        $I->assertNull($tvshow->getId());
+        $I->assertSame('Futurama', $tvshow->getName());
+    }
 
 }
