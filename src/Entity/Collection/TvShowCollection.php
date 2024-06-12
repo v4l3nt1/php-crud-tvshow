@@ -30,15 +30,44 @@ class TvShowCollection
         return $stmt->fetchAll();
     }
 
-    public static function getTvShowByGenre($genreId) : array
+    public static function getTvShowByGenre($genreList) : array
     {
-        $stmt = MyPDo::getInstance()->prepare(<<<SQL
+
+        $conditions=[];
+        $count=0;
+        foreach ($genreList as $genreId)
+        {
+            $conditions+=[(<<<SQL
+                tg.genreId=:genre{$count}
+SQL)];
+            $count+=1;
+        }
+
+        $finalCondition = join(" AND ",$conditions);
+
+        $requete=(<<<SQL
+            SELECT DISTINCT ts.id, ts.name, ts.originalName, ts.homepage, ts.overview, ts.posterId
+            FROM tvshow ts
+            INNER JOIN tvshow_genre tg ON (ts.id = tg.tvShowId)
+            WHERE $finalCondition
+SQL);
+
+
+
+
+        /**$stmt = MyPDo::getInstance()->prepare(<<<SQL
             SELECT ts.id, ts.name, ts.originalName, ts.homepage, ts.overview, ts.posterId
             FROM tvShow ts
             INNER JOIN tvshow_genre tg ON (ts.id = tg.tvShowId)
             WHERE tg.genreId=:genreId
-SQL);
-        $stmt->bindValue(':genreId',$genreId);
+SQL);*/
+        $stmt = MyPDo::getInstance()->prepare($requete);
+        $i=0;
+        while ($i<$count)
+        {
+            $stmt->bindValue(":genre$i",$genreList[$i]);
+            $i+=1;
+        }
         $stmt->setFetchMode(PDO::FETCH_CLASS,TvShow::class);
         $stmt->execute();
         return $stmt->fetchAll();
