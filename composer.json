@@ -50,6 +50,13 @@
         ],
         "fix:cs": [
             "php vendor/bin/php-cs-fixer fix"
+        ],
+        "test:codecept": [
+            "php vendor/bin/codecept clean",
+            "php vendor/bin/codecept run"
+        ],
+        "test": [
+            "@test:codecept"
         ]
     }
 }
