@@ -22,7 +22,9 @@ $tvShow = TvShow::findById($season->getTvShowId());
 $episodes = $season->getEpisodes();
 
 $webpage->setTitle($tvShow->getName()." : ".$season->getName());
-$webpage->appendToMenu("./admin/season-form.php?seasonId={$season->getId()}", 'Modifier la Saison');
+$webpage->appendToMenu('./index.php', 'Accueil');
+$webpage->appendToMenu("./tvshow.php?tvShowId={$tvShow->getId()}", 'Page de la série');
+$webpage->appendToMenu("./admin/season-form.php?seasonId={$season->getId()}&tvShowId={$tvShow->getId()}", 'Modifier la Saison');
 $webpage->appendToMenu("./admin/season-delete.php?seasonId={$season->getId()}", 'Supprimer la Saison');
 
 if ($season->getPosterId() == null)

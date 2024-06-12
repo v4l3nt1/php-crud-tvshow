@@ -19,7 +19,8 @@ try {
         throw new ParameterException();
     } else {
         $season = Season::findById((int)$_GET["seasonId"]);
-        $webpage->setTitle("Nom série : Modification de la saison n°");
+        $tvShow = TvShow::findById((int)$_GET["tvShowId"])->getName();
+        $webpage->setTitle(TvShow::findById((int)$_GET["tvShowId"])->getName()." : Modification de la saison n°{$season->getSeasonNumber()}");
     }
     $seasonForm = new SeasonForm($season);
     $webpage->appendContent($seasonForm->getHtmlForm('season-save.php?tvShowId=' . $_GET["tvShowId"]));

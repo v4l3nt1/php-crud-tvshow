@@ -10,7 +10,7 @@ try {
     $seasonForm->setEntityFromQueryString();
     $seasonForm->getSeason()->save();
     http_response_code(302);
-    header("Location: /index.php");
+    header("Location: /season.php?seasonId={$seasonForm->getSeason()->getId()}");
     exit();
 } catch (ParameterException) {
     http_response_code(400);
