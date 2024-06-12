@@ -86,7 +86,7 @@ class TvShow
      * @param string $name
      * @return TvShow
      */
-    private function setName(string $name): TvShow
+    public function setName(string $name): TvShow
     {
         $this->name = $name;
         return $this;
