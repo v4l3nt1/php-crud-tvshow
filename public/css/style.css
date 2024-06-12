@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.header, button, .content, .footer, .show, .season, .episode, .menu, .menu>a {
+.header, button, .content, .footer, .show, .season, .episode, .menu, .menu>a, .genre-list {
     border: 2px solid black;
     padding: 5px;
     margin: 5px;
@@ -104,4 +104,15 @@ body {
 .content>form {
     display: flex;
     flex-direction: column;
+}
+.genre-list{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.genre{
+    border: 1px solid black;
+    padding: 2px;
+    display: flex;
+    align-content: center;
 }
