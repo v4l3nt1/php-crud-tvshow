@@ -1,9 +1,12 @@
 <?php
+
 namespace Tests\Crud;
+
 use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
 use Entity\TvShow;
 use Tests\CrudTester;
+
 class TvShowCest
 {
     public function findById(CrudTester $I)
@@ -82,7 +85,7 @@ class TvShowCest
 
     public function createWithId(CrudTester $I)
     {
-        $tvshow = TvShow::create(8,'test3', 'test3', 'http://test3.com', 'test3', 6);
+        $tvshow = TvShow::create(8, 'test3', 'test3', 'http://test3.com', 'test3', 6);
         $I->assertSame(8, $tvshow->getId());
         $I->assertSame('test3', $tvshow->getName());
         $I->assertSame('test3', $tvshow->getOriginalName());

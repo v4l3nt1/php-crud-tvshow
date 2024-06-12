@@ -18,7 +18,7 @@ $webpage->appendContent(<<<HTML
                                         <div class="genre-list">
 HTML);
 
-$genrelist=GenreCollection::getAll();
+$genrelist = GenreCollection::getAll();
 
 foreach ($genrelist as $genre) {
     $webpage->appendContent(<<<HTML
@@ -39,28 +39,24 @@ $webpage->appendContent(<<<HTML
 HTML);
 
 $genresChose = [];
-    foreach ($genrelist as $genre)
-    {
-        if (isset($_GET["genre{$genre->getName()}"])&&$_GET["genre{$genre->getName()}"]=="on")
-        {
-            $genresChose+=[$genre->getId()];
-        }
+foreach ($genrelist as $genre) {
+    if (isset($_GET["genre{$genre->getName()}"]) && $_GET["genre{$genre->getName()}"] == "on") {
+        $genresChose += [$genre->getId()];
     }
+}
 
-if(count($genresChose)==0)
-{
+if(count($genresChose) == 0) {
     $tvshows = TvShowCollection::findAll();
-}else{
+} else {
     $tvshows = TvShowCollection::getTvShowByGenre($genresChose);
 }
 
 
 $webpage->appendContent("<div class='list'>\n");
 foreach ($tvshows as $tvshow) {
-    if ($tvshow->getPosterId() == null)
-    {
+    if ($tvshow->getPosterId() == null) {
         $jpeg = 'img/default.png';
-    }else{
+    } else {
         $jpeg = "poster.php?posterId={$tvshow->getPosterId()}";
     }
     $webpage->appendContent("            <a class='show' href='tvshow.php?tvShowId={$tvshow->getId()}'>\n");

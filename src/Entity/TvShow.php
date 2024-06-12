@@ -188,7 +188,8 @@ SQL
             UPDATE tvshow
             SET name=:name, originalName=:originalName, homepage=:homepage, overview=:overview
             WHERE id=:id
-        SQL);
+        SQL
+        );
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':originalName', $this->getOriginalName());
