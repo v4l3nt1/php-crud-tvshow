@@ -11,8 +11,8 @@ $webpage->setTitle('Séries TV');
 $webpage->appendToMenu('./admin/tvshow-form.php', 'Ajouter');
 
 $webpage->appendContent(<<<HTML
-                                    <form action="index.php"
-                                        <ul class="genre-list">
+                                    <form action="index.php">
+                                        <div class="genre-list">
 
 HTML);
 
@@ -25,15 +25,14 @@ foreach ($genrelist as $genre) {
                                                 <label for="genre{$genre->getName()}">{$genre->getName()}</label>
                                                 <input type="checkbox" id="genre" name="genre{$genre->getName()}">
                                             </div>
-                                            
 
 HTML);
 }
 
 $webpage->appendContent(<<<HTML
-                                        </ul class="genre-list">
                                         <input type="submit" value="Envoyer">
-                                    </form action="index.php"
+                                        </div>
+                                    </form>
 HTML);
 
 $genresChose = [];
