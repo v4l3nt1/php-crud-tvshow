@@ -3,3 +3,4 @@
 /.php-cs-fixer.cache
 /tests/tvshow-lite.sqlite
 /tests/tvshow-lite.sqlite_snapshot
+/.mypdo.ini
