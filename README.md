@@ -7,7 +7,7 @@ Voici le dépot git pour la **SAE201** `php-crud-tvshow` par
 
 Pour garantir le bon fonctionnement de notre projet,
 **Composer** doit être installé sur votre machine. Il peut
-être installé facilement avec [ce tutoriel](http://cutrona/installation-configuration/composer/) de **Jérôme Cutrona**.
+être installé facilement avec [ce tutoriel](https://iut-info.univ-reims.fr/users/cutrona/restricted/installation-configuration/composer/) de **Jérôme Cutrona**.
 
 
 Clonez le dépôt avec :
