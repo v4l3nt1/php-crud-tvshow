@@ -1,0 +1,4 @@
+[mypdo]
+dsn = 'mysql:host=mysql;dbname=YOUR_DATABASE;charset=utf8'
+username = ''
+password = ''
